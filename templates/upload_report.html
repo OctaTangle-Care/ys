@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Upload Report</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    Patient ID: <input type="number" name="patient_id" required><br>
+    Upload Report: <input type="file" name="report" required><br>
+    <button type="submit">Upload</button>
+</form>
+{% endblock %}
+
+{% comment %} 
+{% extends 'base.html' %}
+
+{% block title %}Upload Report{% endblock %}
+
+{% block content %}
+<h2>Upload Reports</h2>
+<form id="reportForm" enctype="multipart/form-data">
+    <input type="number" id="patient_id" placeholder="Patient ID">
+    <input type="file" id="report">
+    <button type="button" onclick="uploadReport()">Upload</button>
+</form>
+
+<script>
+    function uploadReport() {
+        let formData = new FormData();
+        formData.append("patient_id", document.getElementById("patient_id").value);
+        formData.append("report", document.getElementById("report").files[0]);
+
+        fetch('/hospital/upload_report/', {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => alert(data.message));
+    }
+</script>
+{% endblock %}
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Upload Reports</title>
+</head>
+<body>
+    <h2>Upload Patient Reports</h2>
+    <input id="patient_id" placeholder="Patient ID">
+    <input type="file" id="report">
+    <button onclick="uploadReport()">Upload</button>
+
+    <script>
+        function uploadReport() {
+            let formData = new FormData();
+            formData.append("patient_id", document.getElementById("patient_id").value);
+            formData.append("report", document.getElementById("report").files[0]);
+
+            fetch('/hospital/upload_report/', {
+                method: "POST",
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message));
+        }
+    </script>
+</body>
+</html> {% endcomment %}
+

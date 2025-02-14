@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}YSHospitals{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>YSHospitals</h1>
+    </header>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}YSHospitals{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <h1>YSHospitals</h1>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'register_patient' %}">Register Patient</a></li>
+            <li><a href="{% url 'register_doctor' %}">Doctor</a></li>
+            <li><a href="{% url 'upload_report' %}">Upload Reports</a></li>
+            <li><a href="{% url 'api_section' %}">API Section</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html> {% endcomment %}

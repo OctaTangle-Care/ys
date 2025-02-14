@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Register Doctor</h2>
+<form method="post">
+    {% csrf_token %}
+    Name: <input type="text" name="name" required><br>
+    Age: <input type="number" name="age" required><br>
+    Gender: <input type="text" name="gender" required><br>
+    Contact Number: <input type="text" name="contact_number" required><br>
+    Email: <input type="email" name="email" required><br>
+    Address: <textarea name="address" required></textarea><br>
+    Specialization: <input type="text" name="specialization" required><br>
+    Experience (Years): <input type="number" name="experience" required><br>
+    <button type="submit">Register</button>
+</form>
+{% endblock %}
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Register Doctor</title>
+</head>
+<body>
+    <h2>Register Doctor</h2>
+    <input id="name" placeholder="Name">
+    <input id="age" placeholder="Age">
+    <input id="gender" placeholder="Gender">
+    <input id="contact_number" placeholder="Contact Number">
+    <input id="email" placeholder="Email">
+    <input id="address" placeholder="Address">
+    <input id="specialization" placeholder="Specialization">
+    <input id="experience" placeholder="Experience">
+    <button onclick="registerDoctor()">Submit</button>
+
+    <script>
+        function registerDoctor() {
+            fetch('/hospital/register_doctor/', {
+                method: "POST",
+                body: JSON.stringify({
+                    name: document.getElementById("name").value,
+                    age: document.getElementById("age").value,
+                    gender: document.getElementById("gender").value,
+                    contact_number: document.getElementById("contact_number").value,
+                    email: document.getElementById("email").value,
+                    address: document.getElementById("address").value,
+                    specialization: document.getElementById("specialization").value,
+                    experience: document.getElementById("experience").value,
+                }),
+                headers: {"Content-Type": "application/json"},
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message));
+        }
+    </script>
+</body>
+</html> {% endcomment %}

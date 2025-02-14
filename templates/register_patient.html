@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Register Patient</h2>
+<form method="post">
+    {% csrf_token %}
+    Name: <input type="text" name="name" required><br>
+    Age: <input type="number" name="age" required><br>
+    Gender: <input type="text" name="gender" required><br>
+    Contact Number: <input type="text" name="contact_number" required><br>
+    Email: <input type="email" name="email" required><br>
+    Address: <textarea name="address" required></textarea><br>
+    Problem: <textarea name="problem" required></textarea><br>
+    <button type="submit">Register</button>
+</form>
+{% endblock %}
+
+{% comment %} 
+
+{% extends 'base.html' %}
+
+{% block title %}Register Patient{% endblock %}
+
+{% block content %}
+<h2>Register Patient</h2>
+<form id="patientForm">
+    <input type="text" id="name" placeholder="Name" required>
+    <input type="number" id="age" placeholder="Age" required>
+    <select id="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+    <input type="text" id="contact" placeholder="Contact Number" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <textarea id="address" placeholder="Address"></textarea>
+    <input type="text" id="problem" placeholder="Health Issue" required>
+    <button type="button" onclick="registerPatient()">Submit</button>
+</form>
+
+<script>
+    function registerPatient() {
+        let data = {
+            name: document.getElementById("name").value,
+            age: document.getElementById("age").value,
+            gender: document.getElementById("gender").value,
+            contact_number: document.getElementById("contact").value,
+            email: document.getElementById("email").value,
+            address: document.getElementById("address").value,
+            problem: document.getElementById("problem").value
+        };
+
+        fetch('/hospital/register_patient/', {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {"Content-Type": "application/json"}
+        })
+        .then(response => response.json())
+        .then(data => alert(data.message));
+    }
+</script>
+{% endblock %}
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Register Patient</title>
+</head>
+<body>
+    <h2>Register Patient</h2>
+    <input id="name" placeholder="Name">
+    <input id="age" placeholder="Age">
+    <input id="gender" placeholder="Gender">
+    <input id="contact_number" placeholder="Contact Number">
+    <input id="email" placeholder="Email">
+    <input id="address" placeholder="Address">
+    <input id="problem" placeholder="Problem">
+    <button onclick="registerPatient()">Submit</button>
+
+    <script>
+        function registerPatient() {
+            fetch('/hospital/register_patient/', {
+                method: "POST",
+                body: JSON.stringify({
+                    name: document.getElementById("name").value,
+                    age: document.getElementById("age").value,
+                    gender: document.getElementById("gender").value,
+                    contact_number: document.getElementById("contact_number").value,
+                    email: document.getElementById("email").value,
+                    address: document.getElementById("address").value,
+                    problem: document.getElementById("problem").value,
+                }),
+                headers: {"Content-Type": "application/json"},
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message));
+        }
+    </script>
+</body>
+</html> {% endcomment %} 

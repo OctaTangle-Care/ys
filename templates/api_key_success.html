@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Key Generated</title>
+</head>
+<body>
+    <h2>API Key Successfully Generated</h2>
+    <p><strong>User:</strong> {{ api_key.user }}</p>
+    <p><strong>API Key:</strong> <input type="text" value="{{ api_key.key }}" readonly></p>
+    <a href="{% url 'generate_api_key_view' %}">Generate Another API Key</a>
+</body>
+</html>

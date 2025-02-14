@@ -1,0 +1,88 @@
+
+
+{% extends 'base.html' %}
+
+{% block title %}API Section{% endblock %}
+
+{% block content %}
+<h2>Generate API Key</h2>
+<button onclick="generateApiKey()">Generate Key</button>
+<p id="api_key"></p>
+
+<h2>Existing API Keys</h2>
+<ul id="api_keys_list"></ul>
+
+<script>
+    function generateApiKey() {
+        fetch('/hospital/generate_api_key/', { method: "POST" })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("api_key").innerText = data.api_key;
+            loadApiKeys();
+        });
+    }
+
+    function loadApiKeys() {
+        fetch('/hospital/list_api_keys/')
+        .then(response => response.json())
+        .then(data => {
+            let list = document.getElementById("api_keys_list");
+            list.innerHTML = "";
+            data.api_keys.forEach(api => {
+                let li = document.createElement("li");
+                li.innerText = `ID: ${api.id}, Key: ${api.key}, Created: ${api.created_at}`;
+                list.appendChild(li);
+            });
+        });
+    }
+
+    loadApiKeys();
+</script>
+{% endblock %}
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>API Section</title>
+</head>
+<body>
+    <h2>Generate API Key</h2>
+    <button onclick="generateApiKey()">Generate Key</button>
+    <h3>API Key:</h3>
+    <p id="api_key"></p>
+
+    <h2>Existing API Keys</h2>
+    <ul id="api_keys_list"></ul>
+
+    <script>
+        function generateApiKey() {
+            fetch('/hospital/generate_api_key/', {
+                method: "POST",
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("api_key").innerText = data.api_key;
+                loadApiKeys();
+            });
+        }
+
+        function loadApiKeys() {
+            fetch('/hospital/list_api_keys/')
+            .then(response => response.json())
+            .then(data => {
+                let list = document.getElementById("api_keys_list");
+                list.innerHTML = "";
+                data.api_keys.forEach(api => {
+                    let li = document.createElement("li");
+                    li.innerText = `ID: ${api.id}, Key: ${api.key}, Created At: ${api.created_at}`;
+                    list.appendChild(li);
+                });
+            });
+        }
+
+        // Load API keys on page load
+        loadApiKeys();
+    </script>
+</body>
+</html> {% endcomment %}

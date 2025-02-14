@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - YSHospitals{% endblock %}
+
+{% block content %}
+    <h2>Welcome to YSHospitals</h2>
+    <p>Choose an option:</p>
+    <ul>
+        <li><a href="{% url 'register_patient_view' %}">Register Patient</a></li>
+        <li><a href="{% url 'register_doctor_view' %}">Doctor</a></li>
+        <li><a href="{% url 'upload_report_view' %}">Upload Reports</a></li>
+        <li><a href="{% url 'generate_api_key_view' %}">API Section</a></li>
+        <li><a href="{% url 'display_reports' %}">Reports</a></li>
+    </ul>
+{% endblock %}
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>YSHospitals</title>
+    <script>
+        function navigate(page) {
+            window.location.href = page + ".html";
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome to YSHospitals</h1>
+    <button onclick="navigate('register_patient')">Register Patient</button>
+    <button onclick="navigate('upload_report')">Upload Reports</button>
+    <button onclick="navigate('register_doctor')">Doctor</button>
+    <button onclick="navigate('api_section')">API Section</button>
+</body>
+</html> {% endcomment %}
+{% comment %} 
+
+{% extends 'base.html' %}
+
+{% block title %}Home - YSHospitals{% endblock %}
+
+{% block content %}
+<h2>Welcome to YSHospitals</h2>
+<p>Choose an option:</p>
+<ul>
+    <li><a href="{% url 'register_patient' %}">Register Patient</a></li>
+    <li><a href="{% url 'register_doctor' %}">Doctor</a></li>
+    <li><a href="{% url 'upload_report' %}">Upload Reports</a></li>
+    <li><a href="{% url 'api_section' %}">API Section</a></li>
+</ul>
+{% endblock %} {% endcomment %}
+
